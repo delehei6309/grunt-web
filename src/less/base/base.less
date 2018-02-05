@@ -1,0 +1,106 @@
+@charset "UTF-8";
+@import "rem";
+@import "variables";
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    vertical-align: baseline;
+}
+
+img {
+    border: 0 none;
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+
+button {
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    border-radius: .25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: none;
+    padding: 0 .5rem;
+    margin: 0;
+    white-space: nowrap;
+    position: relative;
+    text-overflow: ellipsis;
+    font-size: .7rem;
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+input, textarea {
+    text-rendering: auto;
+    color: #333;
+    font-size: .8rem;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    outline: none;
+    border: none;
+    resize: none;
+
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+   font-size: .6rem;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: .6rem;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: .6rem;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-size: .6rem;
+}
+
+
+
+
+body {
+    font-family: @font-family-default;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 640px;
+    background: @bg-body;
+    color: @color-text-secondary;
+    font-size: .7rem;
+    text-size-adjust: 100% !important
+}
+
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+}
