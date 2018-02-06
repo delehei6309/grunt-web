@@ -80,7 +80,7 @@ module.exports = function(grunt){
                     {
                         expand: true,
                         cwd: 'src/',
-                        src: ['html/*','css/*','js/*'],
+                        src: ['html/*','css/*','js/*','images/*'],
                         dest: 'dist/',
                         filter: 'isFile'
                     }
