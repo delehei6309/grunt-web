@@ -6,8 +6,3 @@ let fun = ()=>{
     });
 };
 fun();
-const names = 'miaoqing';
-for(let i = 0;i<arr.length;i++){
-    console.log(i);
-    //测试
-}

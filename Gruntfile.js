@@ -8,12 +8,21 @@ module.exports = function(grunt){
         uglify:{
             options:{
                 stripBanners:true,
-                banner:'/*!<%=pkg.name%>-<%=pkg.version%>.js <%= grunt.template.today("yy-mm-dd")%>*/\n'
+                banner:'/*!<%=pkg.name%>-<%=pkg.version%>.js <%= grunt.template.today("yy-mm-dd")%>*/\n',
+                compress: {
+                    drop_console: true//删除console
+                }
             },
-            build:{
+             files: {
+                expand : true,            //将占位符*展开 即使用占位符匹配文件名
+                src: 'src/js/*.js',       //压缩src目录及所有子目录下的js文件
+                //dest: 'src/js',             //压缩文件存放到dist目录下的同名目录
+                //ext: '.min.js',           //压缩文件的后缀名
+            },
+            /*build:{
                 src:'src/test.js',
                 dest:'build/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
-            }
+            }*/
         },
         jshint:{
             build:['Gruntfile.js','src/jses6/*.js'],
@@ -111,6 +120,21 @@ module.exports = function(grunt){
                     dest:'src/js'  //输出到此目录下
                 }]
             }
+        },
+        watch: {
+            less: {
+                files: ['src/less/*.less'],
+                tasks: ['less', 'postcss']
+            },
+            js: {
+                files: ['src/jses6/*.js'],
+                tasks: ['babel','jshint']
+            }
+        },
+        clean: {
+            clear: {
+                src: ['dist/']
+            }
         }
 
     });
@@ -121,5 +145,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-text-replace');*/
-    grunt.registerTask('default',['less','postcss','babel','jshint','copy','replace']);
+    grunt.registerTask('default',['less','postcss','jshint','babel','watch']);
+    grunt.registerTask('test',['clean','less','postcss','jshint','babel','copy','replace']);
+    grunt.registerTask('build',['clean','less','postcss','jshint','babel','uglify','copy','replace']);
 };
