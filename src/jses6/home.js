@@ -1,13 +1,15 @@
-let a = 0;
-let arr = [0,1,3,4,5,5,6,67,8];
-let fun = ()=>{
-    arr.map(el=>{
-        console.log('666666666666');
-    });
-};
-fun();
-const names = 'miaoqing';
-for(let i = 0;i<arr.length;i++){
-    console.log(i);
-    //测试
-}
+(()=>{
+    /*axios.post('http://koa-dev.zj-hf.cn:3000/login', {
+        mobile: 'admin',
+        password: '123456'
+    }).then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+        console.log(error);
+    });*/
+    var paginator = new pagination.ItemPaginator({prelink:'/', current: 3, rowsPerPage: 200, totalResult: 10020});
+    var html = paginator.render();
+    paginator = pagination.create('search', {prelink:'/', current: 1, rowsPerPage: 200, totalResult: 10020});
+    html += paginator.render();
+    document.getElementById("paging").innerHTML = html;
+})();
