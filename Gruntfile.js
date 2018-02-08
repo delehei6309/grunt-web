@@ -89,7 +89,7 @@ module.exports = function(grunt){
         },
         replace: {
             replace: {
-                src: ['dist/html/base.html'],
+                src: ['dist/html/*.html'],
                 overwrite: true,
                 replacements: [
                     {
