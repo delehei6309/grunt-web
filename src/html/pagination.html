@@ -15,6 +15,7 @@
 </head>
 <body>
     <div flex="dir:top main:justify" id="app">
+        <button onclick="pageChange()">分页</button>
         <div id="pagination">
             
         </div>
@@ -23,14 +24,18 @@
     <script>
         const page = new pagination({
             el:'#pagination',
-            totalRows:36,
-            pageSize:5,
-            pageNo:8,
-            viewCount:5,
-            callBack:function(val){
+            totalRows:400,
+            pageSize:20,
+            pageNo:1,
+            viewCount:9,
+            align:'center',//分页居中设置//默认左对齐/此功能在flex下支持
+            pageChange:function(val){
                 console.log(val);
             }
         });
+        function pageChange(){
+            page.update({pageNo:6});
+        }
     </script>
 </body>
 </html>

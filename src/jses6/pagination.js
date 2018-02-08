@@ -1,6 +1,6 @@
 class pagination {
     //构造函数
-    constructor({el,totalRows,pageSize,pageNo,prevText,nextText,viewCount,callBack}){
+    constructor({el,totalRows,pageSize,pageNo,prevText,nextText,viewCount,align,pageChange}){
         this.el = el;
         this.totalRows = totalRows || 0;
         this.pageSize = pageSize || 10;
@@ -10,9 +10,18 @@ class pagination {
         
         this.prevText = (prevText || '«');
         this.nextText = (nextText || '»');
-        this.callBack = callBack || null;
+        this.pageChange = pageChange || null;
+
+        this.align = align || null;
 
         this.pageLength = Math.ceil(this.totalRows/this.pageSize);
+        this.start();
+        
+    }
+    start(){
+        this.pageNo>this.pageLength ? this.pageNo = this.pageLength : null;
+
+
         this.dealPageNo();
     }
     /*get init(){
@@ -25,7 +34,8 @@ class pagination {
         let nob = parseInt(this.viewCount/2);
         let nob0 = this.pageNo;
         if(this.pageLength <= this.viewCount){
-            for(let i=0;i<this.viewCount;i++){
+            nob0 = 1;
+            for(let i=0;i<this.pageLength;i++){
                 this.pageNoArray.push(nob0++);
             }
         }
@@ -91,13 +101,15 @@ class pagination {
             }
             
         }
-        console.log(this.pageNoArray);
         this.creatDom();
     }
     //creatDom
     creatDom(){
         //console.log(this.querySelect.querySelector('.page'));
         let pageWrap = document.createElement('div');
+        if(this.align){
+            this.querySelect.setAttribute('flex',`main:${this.align}`);
+        }
         pageWrap.setAttribute('class','page');
         let perBtn = document.createElement('span');
         perBtn.setAttribute('class','btn-prev page-item');
@@ -139,10 +151,11 @@ class pagination {
                 }
             };
         });
+        this.callBack();
     }
     //active-class
     btnClick(num){
-        if(num === '…'){
+        if((num === '…') || (this.pageNo.toString() === num.toString())){
             return false;
         }
         this.pageNo = num;
@@ -162,16 +175,15 @@ class pagination {
         }
     }
     //changeClass
-    changeClass(){
-        this.querySelect.querySelectorAll('a.page-item').forEach(el=>{
-            if(el.innerText === this.pageNo.toString()){
-                el.setAttribute('class','page-item page-item-active');
-            }else{
-                el.setAttribute('class','page-item');
-            }
-        });
-        if(this.callBack){
-            this.callBack(this.pageNo);
+    callBack(){
+        
+        if(this.pageChange){
+            this.pageChange(Number(this.pageNo));
         }
+    }
+    //update
+    update({pageNo}){
+        this.pageNo = pageNo;
+        this.start();
     }
 }

@@ -8,11 +8,16 @@
             border: 1px solid #dee2e6;
             cursor: pointer;
             color:@color;
+            user-select: none;
+            &:not(.page-item-active):hover{
+                background-color: #dee2e6;
+            }
         }
         .page-item-active{
             color: #fff;
             background-color: @color;
             border-color: @color;
+            cursor: default;
         }
     }
 }
