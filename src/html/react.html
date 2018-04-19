@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Document</title>
+    <style type="text/css">html{font-size:20px}@media only screen and (min-width:320px){html{font-size:17.06666667px!important}}@media only screen and (min-width:360px){html{font-size:19.2px!important}}@media only screen and (min-width:375px){html{font-size:20px!important}}@media only screen and (min-width:400px){html{font-size:21.33333333px!important}}@media only screen and (min-width:414px){html{font-size:22.08px!important}}@media only screen and (min-width:480px){html{font-size:25.6px!important}}*{-webkit-tap-highlight-color:transparent;box-sizing:border-box;word-break:break-all;word-wrap:break-word;margin:0;padding:0;-webkit-tap-highlight-color:transparent;outline:0;vertical-align:baseline}img{border:0 none;vertical-align:top;display:inline-block;width:100%;height:auto}button{outline:0;text-decoration:none;text-align:center;display:block;border-radius:.25rem;-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;background:0 0;padding:0 .5rem;margin:0;white-space:nowrap;position:relative;text-overflow:ellipsis;font-size:.7rem;font-family:inherit;cursor:pointer;border:none}input,textarea{text-rendering:auto;color:#333;font-size:.8rem;letter-spacing:normal;word-spacing:normal;text-transform:none;text-indent:0;text-shadow:none;display:inline-block;text-align:start;outline:0;border:none;resize:none}input::-webkit-input-placeholder{font-size:.6rem}input:-moz-placeholder{font-size:.6rem}input::-moz-placeholder{font-size:.6rem}input:-ms-input-placeholder{font-size:.6rem}body{font-family:"Hiragino Sans GB","Microsoft YaHei",sans-serif;position:absolute;top:0;right:0;bottom:0;left:0;margin:0 auto;min-width:320px;max-width:640px;font-size:.7rem;text-size-adjust:100%!important}#app{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-webkit-overflow-scrolling:touch;position:absolute;left:0;right:0;top:0;bottom:0;overflow:auto}</style>
+    <link rel="stylesheet" type="text/css" href="/src/css/base.css?v=0.0.0">
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div id="example"></div> 
+        <div id="example2"></div> 
+        <div id="react1"></div>
+        <div id="react2"></div>
+        <div id="react3"></div>
+    </div>
+    <script type="text/babel">
+        var myStyle = {
+            fontSize:'20px',
+            color:'red'
+        };
+        let arr = [<li>韦德</li>,<li>诺维茨基</li>,<li>吉诺比利</li>,<li>罗纳尔多</li>];
+        ReactDOM.render(
+            <div>
+                <h1 style={myStyle}>miaoqing</h1>
+                <p data-myattr="xinxin">qiuyue</p>
+                <ul>{arr}</ul>
+            </div>,
+            document.getElementById('example')
+        );
+        var HelloMessage = React.createClass({
+            render:function(){
+                return <h2>黄飞鸿 饰 {this.props.author}</h2>;
+            }
+        });
+        var Message1 = React.createClass({
+            render:function(){
+                return <h2>苏乞儿 饰 {this.props.name}</h2>
+            }
+        });
+        var MessageDom = React.createClass({
+            render:function(){
+                return (
+                    <div>
+                        <HelloMessage author={this.props.author}/>
+                        <Message1 name={this.props.name}/>
+                    </div>
+                );
+            }
+        })
+        ReactDOM.render(
+            <MessageDom name="周星驰" author="李连杰"/>,
+            document.getElementById('react1')
+        );
+        var LinkButton = React.createClass({
+            getInitialState:function(){
+                return {
+                    liked:false
+                };
+            },
+            handleClick:function(event){
+                this.setState({
+                    liked:!this.state.liked
+                });
+            },
+            render:function(){
+                var text = this.state.liked ? 'ok' : 'no' ;
+                return (
+                    <p onClick={this.handleClick}>
+                        <b>{text}</b>点我切换
+                    </p>
+                )
+            }
+        });
+        ReactDOM.render(
+            <LinkButton />,
+            document.getElementById('react2')
+        )
+
+        var title = ['1','3'];
+        var MyTitle = React.createClass({
+          propTypes: {
+            title: React.PropTypes.string.isRequired,
+          },
+         
+          render: function() {
+             return <h1> {this.props.title} </h1>;
+           }
+        });
+        ReactDOM.render(
+            <MyTitle title={title} />,
+            document.getElementById('example2')
+        );
+        var AjaxDom = React.createClass({
+            getInitialState: function() {
+          return {
+            username: '',
+            lastGistUrl: ''
+          };
+        },
+
+        componentDidMount: function() {
+            axios.get('/api').then(function(res){
+                console.log(this,res);
+            }.bind(this));
+            axios.post('/update',{
+                name:'1234'
+            }).then(res=>{
+                console.log(res);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+
+        componentWillUnmount: function() {
+          this.serverRequest.abort();
+        },
+
+        render: function() {
+          return (
+            <div>
+              {this.state.username} 用户最新的 Gist 共享地址：
+              <a href={this.state.lastGistUrl}>{this.state.lastGistUrl}</a>
+            </div>
+          );
+        }
+        });
+        ReactDOM.render(
+            <AjaxDom source="/api"/>,
+            document.getElementById('react3')
+        )
+    </script>
+</body>
+</html>
