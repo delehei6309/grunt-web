@@ -1,0 +1,35 @@
+{
+    "version":"1.0.0",
+    "data":[
+        {
+            "userName":"miaoqing",
+            "password":"iii0419"
+        },{
+            "userName":"qiuyue",
+            "password":"iii0815"
+        },{
+            "userName":"xinxin",
+            "password":"iii0330"
+        },{
+            "userName":"liudi",
+            "password":"iii0528"
+        }
+    ],
+    "dataItems":{
+        "miaoqing":{
+            "password":"iii0419"
+        },
+        "qiuyue":{
+            "password":"iii0815"
+        },
+        "xinxin":{
+            "password":"iii0330"
+        },
+        "liudi":{
+            "password":"iii0528"
+        },
+        "nina":{
+            "password":"iii0607"
+        }
+    }
+}

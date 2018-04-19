@@ -114,7 +114,7 @@
             axios.get('/api').then(function(res){
                 console.log(this,res);
             }.bind(this));
-            axios.post('/update',{
+            axios.post('/login',{
                 name:'1234'
             }).then(res=>{
                 console.log(res);
