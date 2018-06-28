@@ -21,4 +21,4 @@ node server
 ```
 
 
-访问 [localhost:8086](http://localhost:8086)
+访问 [localhost:8086/base](http://localhost:8086/base)
