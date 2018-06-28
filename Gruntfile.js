@@ -36,6 +36,7 @@ module.exports = function(grunt){
                     sourceMap: false
                 },
                 expand: true,
+                map:false,
                 cwd: 'src/less',
                 src: ['*.less'],
                 dest: 'src/css',
@@ -49,10 +50,10 @@ module.exports = function(grunt){
                     mangle:false
                 },
                 expand: true,
-                cwd: 'src/css',//压缩那个文件夹里的文件
-                src:['**/*.css'],//压缩那个文件
-                dest:'src/minCss',//放压缩后文件的文件夹
-                ext:'.min.css'//压缩后文件的的名字
+                cwd: 'dist/css',//压缩那个文件夹里的文件
+                src:['**'],//压缩那个文件
+                dest:'dist/css',//放压缩后文件的文件夹
+                //ext:'.min.css'//压缩后文件的的名字
             }
         },
         postcss: {
@@ -60,17 +61,34 @@ module.exports = function(grunt){
                 //map: true, // inline sourcemaps
                 // or
                 map: false,
-         
                 processors: [
-                    require('pixrem')(), // add fallbacks for rem units
-                    require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
-                    require('cssnano')() // minify the result
+                    require('autoprefixer')({
+                        browsers: [
+                            'ie >= 9',
+                            'ie_mob >= 10',
+                            'ff >= 26',
+                            'chrome >= 30',
+                            'safari >= 6',
+                            'opera >= 23',
+                            'ios >= 7',
+                            'android >= 4.0',
+                            'bb >= 10'
+                        ]
+                    })
                 ]
+                // processors: [
+                //     require('pixrem')(), // add fallbacks for rem units
+                //     require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
+                //     require('cssnano')() // minify the result
+                // ]
             },
             dist: {
                 src: 'src/css/**/*.css',
                 expand: true,
-                //dest: 'dist/css'
+                // cwd: 'src/css',
+                // src:['**/*.css'],
+                // dest:'src/',
+                //ext:'.min.css'
             }
         },
         copy: {
@@ -79,9 +97,27 @@ module.exports = function(grunt){
                     // makes all src relative to cwd
                     {
                         expand: true,
-                        cwd: 'src/',
-                        src: ['html/*','css/*','js/*'],
-                        dest: 'dist/',
+                        cwd: 'src/js',
+                        src: ['**'],
+                        dest: 'dist/js',
+                        filter: 'isFile'
+                    },{
+                        expand: true,
+                        cwd: 'src/css',
+                        src: ['**'],
+                        dest: 'dist/css',
+                        filter: 'isFile'
+                    },{
+                        expand: true,
+                        cwd: 'src/html',
+                        src: ['**'],
+                        dest: 'dist/html',
+                        filter: 'isFile'
+                    },{
+                        expand: true,
+                        cwd: 'src/images',
+                        src: ['**'],
+                        dest: 'dist/images',
                         filter: 'isFile'
                     }
                 ]
@@ -107,7 +143,7 @@ module.exports = function(grunt){
                 ]
             }
         },
-         babel: {
+        babel: {
             options: {
                 sourceMap: false,
                 presets: ['env']
@@ -121,6 +157,7 @@ module.exports = function(grunt){
                 }]
             }
         },
+        browserify:{},
         watch: {
             less: {
                 files: ['src/less/*.less'],
@@ -133,7 +170,7 @@ module.exports = function(grunt){
         },
         clean: {
             clear: {
-                src: ['dist/']
+                src: ['dist/','html/']
             }
         }
 
@@ -145,7 +182,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-text-replace');*/
-    grunt.registerTask('default',['less','postcss','jshint','babel','watch']);
+    grunt.registerTask('default',['less','postcss','jshint','babel','copy','replace','watch']);
     grunt.registerTask('test',['clean','less','postcss','jshint','babel','copy','replace']);
-    grunt.registerTask('build',['clean','less','postcss','jshint','babel','uglify','copy','replace']);
+    grunt.registerTask('build',['clean','less','postcss','jshint','babel','uglify','copy','replace','cssmin']);
 };
