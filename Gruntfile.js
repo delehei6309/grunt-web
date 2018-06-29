@@ -182,7 +182,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-text-replace');*/
-    grunt.registerTask('default',['less','postcss','jshint','babel','copy','replace','watch']);
+    grunt.registerTask('default',['less','postcss','jshint','babel','watch']);
     grunt.registerTask('test',['clean','less','postcss','jshint','babel','copy','replace']);
     grunt.registerTask('build',['clean','less','postcss','jshint','babel','uglify','copy','replace','cssmin']);
 };
