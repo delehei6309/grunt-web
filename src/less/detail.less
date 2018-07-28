@@ -1,0 +1,62 @@
+.detail{
+	background-color: #fff;
+	color:#333;
+	.detail-top{
+		.detail-cont{
+			border-bottom: 0.5rem solid #f2f2f2;
+			dt{
+				min-height: 18.5rem;
+				font-size: 0;
+			}
+			dd{
+				font-size: 0.9rem;
+				padding: 1.0rem;
+				line-height: 1.1rem;
+			}
+
+		}
+		.detail-xiangqing{
+			padding:1.25rem 0 1.0rem;
+			dt{
+				position: relative;
+				height: .75rem;
+				margin-bottom: .88rem;
+				span{
+					font-size: 0.75rem;
+					background-color: #fff;
+					color:#666;
+					line-height: 0.75rem;
+					padding:0 0.3rem;
+					position: absolute;
+					top:0;
+					left:50%;
+					transform: translateX(-50%);
+					z-index: 7;
+				}
+				&::after{
+					content:"";
+					position: absolute;
+					height:1px;
+					width:100%;
+					background-color: #ccc;
+					left:0;
+					top:50%;
+					transform: translateY(-50%);
+					z-index: 6;
+				}
+			}
+			dd{
+				padding:0.62rem 1.0rem 0;
+				text-align: center;
+				p.selft-font{
+					font-size: 0.75rem;
+					line-height: 1.5em;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+	.detail-bottom{
+		
+	}
+}

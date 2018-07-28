@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>立即兑换</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css?v=0.0.0">
+    <link rel="stylesheet" type="text/css" href="../css/duihuan.css?v=0.0.0">
+</head>
+<body>
+    <div flex="dir:top" class="wrapper duihuan">
+        <div flex-box="1" class="duihuan-top">
+            <div class="address-wrap">
+                <div class="add-address" style="display: none">
+                    <a href="./address.html">
+                        <div flex="main:center cross:center" class="add-address-box">
+                            <span class="add-icon"></span>
+                            <span>添加收货地址</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="address-infor" style="display: none">
+                    <ul flex>
+                        <li flex-box="0" class="icon1"></li>
+                        <li flex-box="1" class="address-inner">
+                            <div flex="main:justify" class="adr-inner-up">
+                                <div flex class="adr-inner-up-l">
+                                    <span style="width:32%">收货人：</span>
+                                    <span style="width:68%">小明</span>
+                                </div>
+                                <div class="tell">18997296307</div>
+                            </div>
+                            <div class="adr-inner-down">
+                                <span>收货地址：</span>
+                                <span>北京市石景山区阜石路1号中国华录大厦14层</span>
+                            </div>
+                        </li>
+                        <li flex-box="0" class="icon2"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="goods">
+                <a href="./detail.html">
+                    <dl flex>
+                        <dt flex-box="0" flex="main:center cross:center">
+                            <img src="../images/detail-img_06.jpg">
+                        </dt>
+                        <dd flex-box="1">
+                            <p>中秋月饼礼盒大礼包中秋月饼礼包中 秋月饼礼盒大礼包中秋月饼礼盒中秋月饼礼盒大礼包中秋月饼礼包中中秋月饼礼盒大礼包中秋月饼礼包中中秋月饼礼盒大礼包中秋月饼礼包中</p>
+                        </dd>
+                    </dl>
+                </a>
+            </div>
+            <div class="hint">*虚拟商品兑换成功后，会发送电影票兑换码到收货人手机，<br>前往<a href="javascript:void(0);">兑换服务-兑换专区</a>使用；也可在<a href="javascript:void(0);">“我的订单”</a>直接使用。</div>
+        </div>
+        <div flex-box="0" class="duihuan-bottom">
+            <button class="button-duihuan" id="submit">立即兑换</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../public/js/operation.js"></script>
+    <script type="text/javascript" src="../../public/js/toast.js"></script>
+    <script>
+        $(function(){
+            var loading = false;
+            var hasAddress = false;
+
+            //地址栏如何显示
+            var address = getRequest().address;
+            if(address){
+                $('.address-infor').show();
+                hasAddress = true;
+            }else{
+                $('.add-address').show();
+            }
+
+            $('#submit').click(function(){
+                if(loading){
+                    //可以在此添加提示
+                    return false;
+                }
+                if(hasAddress){
+                    //提交
+                    //
+                    window.location.href = './success.html'
+                }else{
+                    toast({
+                        text:'请添加收货地址',
+                        duration:2500
+                    });
+                }
+            })
+        })
+        
+    </script>
+</body>
+</html>
