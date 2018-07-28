@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>我的订单</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css?v=0.0.0">
+    <link rel="stylesheet" type="text/css" href="../css/order.css?v=0.0.0">
+</head>
+<body>
+    <div class="wrapper order">
+        <div class="order-items">
+            <dl>
+                <dt flex>
+                   <span class="order-num">订单编号：</span>
+                   <span class="order-inner">123456</span>
+                </dt>
+                <dd flex>
+                    <div flex-box="0" class="dd-left">
+                        <img src="../images/detail-img_06.jpg">
+                    </div>
+                    <div flex-box="1" flex="dir:top main:justify" class="dd-right">
+                        <div class="dd-right-tit">中秋月饼礼盒大礼包中秋月饼礼包中秋月饼礼盒大礼包中秋中秋月饼礼盒大礼包中秋月饼礼包中秋月饼礼盒大礼包中秋</div>
+                        <div flex="main:right" class="dd-right-btn">
+                            <div flex>
+                                <button id="use-quan">使用观影券</button>
+                                <button>查看物流</button>
+                                <button>订单详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+            <dl>
+                <dt flex>
+                   <span class="order-num">订单编号：</span>
+                   <span class="order-inner">123456</span>
+                </dt>
+                <dd flex>
+                    <div flex-box="0" class="dd-left">
+                        <img src="../images/detail-img_06.jpg">
+                    </div>
+                    <div flex-box="1" flex="dir:top main:justify" class="dd-right">
+                        <div class="dd-right-tit">中秋月饼礼盒大礼包中秋月饼礼包中秋月饼礼盒大礼包中秋中秋月饼礼盒大礼包中秋月饼礼包中秋月饼礼盒大礼包中秋</div>
+                        <div flex="main:right" class="dd-right-btn">
+                            <div flex>
+                                <button>查看物流</button>
+                                <button>订单详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="order-quan-wrap">
+            <div flex="dir:top" class="order-quan">
+                <h6 flex-box="0">使用观影券(3张可用)</h6>
+                <div flex-box="1" class="order-quan-items">
+                    <ul id="quan-list">
+                        <li flex="main:justify cross:center" data-orderid="1">
+                            <div class="quan-left">123456789008765</div>
+                            <div class="quan-right">
+                                <span>有效期：</span><span>2019-01-02</span>
+                            </div>
+                        </li>
+                        <li flex="main:justify cross:center" data-orderid="2">
+                            <div class="quan-left">123456789008765</div>
+                            <div class="quan-right">
+                                <span>有效期：</span><span>2019-01-02</span>
+                            </div>
+                        </li>
+                        <li flex="main:justify cross:center" data-orderid="3">
+                            <div class="quan-left">123456789008765</div>
+                            <div class="quan-right">
+                                <span>有效期：</span><span>2019-01-02</span>
+                            </div>
+                        </li>
+                        <li class="used" flex="main:justify cross:center"  data-orderid="4">
+                            <div class="quan-left">123456789008765</div>
+                            <div class="quan-right">
+                                <span>有效期：</span><span>2019-01-02</span>
+                            </div>
+                        </li>
+                        <li class="used overdue" flex="main:justify cross:center"  data-orderid="4">
+                            <div class="quan-left">123456789008765</div>
+                            <div class="quan-right">
+                                <span>有效期：</span><span>2019-01-02</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div flex-box="0" class="order-quan-btn">
+                    <button class="button-duihuan" id="submit">立即使用</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../public/js/toast.js"></script>
+    <script >
+        $(function(){
+            var $orderQuanWrap = $('.order-quan-wrap');
+            var $orderQuan = $('.order-quan');
+            var $quanList = $('#quan-list');
+            var orderId = '';//选中订单号
+            //使用观影券
+            $('#use-quan').click(quanAnimate);
+            $orderQuanWrap.click(function(e){
+                if($(e.target).hasClass('order-quan-wrap')){
+                    quanAnimate();
+                }
+            });
+            var animateLoading = false;
+            function quanAnimate(call){
+                if(animateLoading){
+                    return false;
+                }
+                
+                animateLoading = true;
+                if($orderQuanWrap.hasClass('show')){
+                    $orderQuan.removeClass('show');
+                    setTimeout(function(){
+                        $orderQuanWrap.removeClass('show');
+                    },300);
+                    setTimeout(function(){
+                        $orderQuanWrap.hide();
+                        animateLoading = false;
+                        if(call){
+                            console.log(call);
+                            call();
+                        }
+                    },500);
+                    return false;
+                }
+                orderId = '';
+                $quanList.children('li').removeClass('selected');
+                $orderQuanWrap.show();
+                setTimeout(function(){
+                    $orderQuanWrap.addClass('show');
+                });
+                setTimeout(function(){
+                    $orderQuan.addClass('show');
+                },200);
+                setTimeout(function(){
+                    animateLoading = false;
+                },500);
+            }
+            
+            //选择券
+            $quanList.children('li').click(function(){
+                if($(this).hasClass('used')){
+                    return false;
+                }
+                $quanList.children('li').removeClass('selected');
+                $(this).addClass('selected');
+                orderId = $(this).data('orderid');
+
+            });
+            //提交
+            var loading = false;
+            $('#submit').click(function(){
+                console.log(orderId)
+                if(!orderId){
+                    toast({
+                        text:'请勾选观影券'
+                    });
+                    return false;
+                }
+                if(loading){
+                    return false;
+                }
+                loading = false;
+                //提交之,也可以直接提交
+                quanAnimate(function(){
+                    //模拟提交
+                    window.location.href = './order-detail.html';
+                });
+            })
+        })
+    </script>
+</body>
+</html>

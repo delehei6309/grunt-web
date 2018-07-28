@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>填写收货地址</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css?v=0.0.0">
+    <link rel="stylesheet" type="text/css" href="../css/address.css?v=0.0.0">
+    <link rel="stylesheet" type="text/css" href="../../public/css/mobileSelect.css">
+</head>
+<body>
+    <div flex="dir:top" class="wrapper address">
+        <div class="address-list">
+            <dl flex>
+                <dt flex-box="0">收货人</dt>
+                <dd flex-box="1">
+                    <input type="text" name="name" id="user-name" placeholder="请输入收货人">
+                </dd>
+            </dl>
+            <dl flex>
+                <dt flex-box="0">联系电话</dt>
+                <dd flex-box="1">
+                    <input type="tel" name="name" id="tel" maxlength="11" placeholder="请输入联系电话">
+                </dd>
+            </dl>
+            <dl flex="main:justify" class="dizhi">
+                <dt flex-box="0">所在地区</dt>
+                <!-- <dd flex-box="1" id="trigger">请选择&nbsp;＞</dd> -->
+                <dd flex-box="1">
+                    <input type="tel" name="name" id="trigger" maxlength="11" 
+                    readonly placeholder="请选择所在地区">
+                </dd>
+                <!-- <dd id="dizhi" style="display: none"></dd> -->
+            </dl>
+            <dl flex class="dizhi-detail">
+                <dt flex-box="0">详细地址</dt>
+                <dd flex-box="1">
+                    <textarea id="dizhi-detail" placeholder="请输入详细地址信息，如街道、门牌号、小区、楼栋号、单元室等"></textarea>
+                </dd>
+            </dl>
+        </div>
+        <div flex="main:center" class="btns">
+            <button id="submit">保存</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../public/js/mobileSelect.min.js"></script>
+    <script type="text/javascript" src="../../public/js/toast.js"></script>
+    <script>
+        $(function(){
+            var loading = false;
+            var hasAddress = false;
+            var addressId = '';//地区的id，初始时需要重置
+            $('#submit').click(function(){
+                var userVal = $('#user-name').val();
+                var telVal = $('#tel').val();
+                var dizhiDetailVal = $('#dizhi-detail').val();
+                if(loading){
+                    //可以在此添加提示
+                    return false;
+                }
+                if(!userVal.trim()){
+                    toast({
+                        text:'请填写收货人！'
+                    });
+                    return false;
+                }
+                if(!telVal.trim()){
+                    toast({
+                        text:'请填写联系电话！'
+                    });
+                    return false;
+                }
+                // if(!checkPhone(telVal)){
+                //     toast({
+                //         text:'联系电话格式有误！'
+                //     });
+                //     return false;
+                // }
+                if(!addressId){
+                    toast({
+                        text:'请选择所在地区！'
+                    });
+                    return false;
+                }
+                if(!dizhiDetailVal){
+                    toast({
+                        text:'请填写详细地址！'
+                    });
+                    return false;
+                }
+                window.location.href = './duihuan.html?address=1';
+                //.....
+                
+            });
+            var mobileSelect = new MobileSelect({
+                trigger: '#trigger',
+                title: '地区选择',
+                wheels: [
+                    {
+                        data:[
+                            {
+                                id:'1',
+                                value:'北京',
+                                childs:[
+                                    {
+                                        id:'1',
+                                        value:'北京',
+                                        childs:[
+                                            {
+                                                id:'11',
+                                                value:'东城区'
+                                            },{
+                                                id:'12',
+                                                value:'朝阳区'
+                                            },{
+                                                id:'13',
+                                                value:'海淀区'
+                                            },{
+                                                id:'14',
+                                                value:'丰台区'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },{
+                                id:'2',
+                                value:'河北省',
+                                childs:[
+                                    {
+                                        id:'21',
+                                        value:'石家庄',
+                                        childs:[
+                                            {
+                                                id:'211',
+                                                value:'长安区'
+                                            },{
+                                                id:'212',
+                                                value:'桥西区'
+                                            },{
+                                                id:'213',
+                                                value:'裕华区'
+                                            },{
+                                                id:'214',
+                                                value:'鹿泉区'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                position:[0,0,0],
+                callback:function(indexArr, data){
+                    console.log(data); //返回选中的json数据
+                    $('#trigger').val(data[0].value+' '+data[1].value+' '+data[2].value)
+                    addressId = data[2].id;
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

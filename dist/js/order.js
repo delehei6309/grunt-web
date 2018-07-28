@@ -1,0 +1,3 @@
+/*!grunt_test-1.0.0.js 18-07-29*/
+
+"use strict";var checkPhone=function(e){return!!/^(0|86|17951)?(1)[0-9]{10}$/.test(e)},$orderCancel=$("#order-cancel"),$orderSure=$("#order-sure");function Toast(e,c){c=c||2e3;var r='<div class="toast-wrap" flex="main:center cross:center"><div class="toast">'+e+"</div></div>";$("body").append(r),setTimeout(function(){$(".toast-wrap").remove()},c)}$orderCancel.click(function(){$("#mes").show()}),$("#message-cancel").click(function(){$("#mes").hide()}),$("#message-sure").click(function(){$("#mes").hide(),window.history.back()});
