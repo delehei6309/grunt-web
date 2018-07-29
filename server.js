@@ -4,11 +4,11 @@
 var path = require('path');
 var express = require('express');
 var app = express();
-app.use('/public', express.static(path.resolve('./src')));
+app.use('/public', express.static(path.resolve('./dist')));
 var port = 8086;
 app.get('/*', function (req, res) {
 	let param = req.params[0];
-    res.sendFile(path.resolve(`./src/html/${param}.html`));
+    res.sendFile(path.resolve(`./dist/html/${param}.html`));
 });
 app.listen(port, (error) => {
     if (error) {
