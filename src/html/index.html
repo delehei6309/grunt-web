@@ -21,14 +21,14 @@
         <div class="content">
             <div class="introduce">
                 <img src="/public/images/introduce.png">
-                <img class="more-head" onclick="alert('更多')" src="/public/images/more-head.png">
+                <img class="more-head" src="/public/images/more-head.png">
             </div>
             <div class="title">
                 <img src="/public/images/zhuhe.png">
             </div>
             <div class="video-wrap">
                 <div class="video">
-                    <video autoplay controls src="/public/video/video.mp4" poster="/public/images/poster.png"></video>
+                    <video id="video" autoplay controls src="/public/video/video.mp4" poster="/public/images/poster.png"></video>
                     <div class="video-mode"></div>
                 </div>
                 <dl>
@@ -210,6 +210,27 @@
                 </ul>
             </div>
         </div>
+        <div id="guide" style="position: fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index: 999;display: none;"></div>
     </div>
 </body>
+<script type="text/javascript" src="http://resource.hualumedia.com/common/js/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.more-head').click(function(){
+            $('#video').css({
+                width:0,
+                height:0
+            });
+            $('#guide').show();
+        });
+        $('#guide').click(function(){
+            
+            $('#video').css({
+                width:'100%',
+                height:'100%'
+            });
+            $('#guide').hide();
+        });
+    });
+</script>
 </html>
