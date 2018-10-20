@@ -1,183 +1,280 @@
-#app{
-	.header{
-		min-height: 16.0rem;
+@bg-botton:linear-gradient(to right, #33ddff , #2f82ff);
+body{
+	background-color:#fff;
+	button{
+		background:@bg-botton;
+		color:#fff;
+		border-radius:0.15rem;
+		height: 2.0rem;
+		font-size:0.9rem;
+	}
+	input::-webkit-input-placeholder {
+		font-size: 0.75rem;
+	    color: #999;
+	}
+	input:-moz-placeholder {
+		font-size: 0.75rem;
+	    color: #999;
+	}
+	input:-ms-input-placeholder {
+		font-size: 0.75rem;
+	    color: #999;
+	}
+}
+.login{
+	.tabs{
+		text-align: center;
+		font-size: 0.75rem;
+		background-color: #f5f5f7;
+		margin-bottom:1.4rem;
+		li{
+			line-height: 1em;
+			padding:0.75rem 0;
+			transition: all .5s;
+			&.selected{
+				background-color:#fff;
+				color:#308eff;
+			}
+		}
 	}
 	.content{
-		padding:0 0.5rem 0.5rem;
-		.introduce{
-			min-height:8.5rem;
-			position: relative;
-			.more-head{
-				position: absolute;
-				width:2.0rem;
-				right:1.12rem;
-				bottom: 1.38rem;
+		overflow:hidden;
+		.swipe{
+			width:200%;
+			transition: transform .5s;
+			transform:translateX(0);
+			&.type-account{
+				transform:translateX(-50%);
 			}
 		}
-		.title{
-			text-align: center;
-			padding:0.42rem 0;
-			min-height: 3.8rem;
-			img{
-				width:12.9rem;
-			}
-		}
-
-		.video-wrap{
-			background-color:#ffefe5;
-			padding:0.5rem;
-			.video{
-				height: 9.4rem;
-				position: relative;
-				video{
-					width:100%;
-					height:100%;
+		.form-wrap{
+			width:100%;
+			padding:0 1.0rem;
+			.ui-border{
+				height:2.0rem;
+				border:1px solid #999;
+				border-radius:0.15rem;
+				font-size: 0.85rem;
+				color:#333;
+				// padding:0.4rem 0;
+				.span-left{
+					padding:0 0.5rem;
+					border-right:1px solid #999;
+					line-height: 1.5em;
 				}
-				// .video-mode{
-				// 	position: absolute;
-				// 	width:100%;
-				// 	height:100%;
-				// }
-			}
-			dl{
-				color:#881111;
-				font-family: '黑体';
-				dt{
+				.span-input{
+					padding:0 0.75rem;
+				}
+				input{
 					font-size: 0.85rem;
-					padding:0.12rem 0;
-					line-height: 1.4rem;
-				}
-				dd{
-					font-size: .7rem;
 				}
 			}
+			.span-captcha{
+				padding-left:.5rem;
+				width:11.03rem;
 
-		}
-		.works{
-			margin-bottom: 0.12rem;
-			.works-items{
-				flex-wrap: wrap;
-				li{
-					width:48.6%;
-					background-color:#ffefe5;
-					margin-bottom:0.5rem;
-					padding:0.25rem 0.2rem;
-					.img{
-						width:100%;
-						height:4.85rem;
-						overflow: hidden;
-						img{
-							width:auto;
-							height:auto;
-							max-width:100%;
-							min-height:100%;
-						}
-					}
-					dl{
-						color:#881111;
-						font-family: '黑体';
-						padding-top:0.25rem;
-						dt{
-							font-size:.8rem;
-							margin-bottom:0.12rem;
-						}
+			}
+			.captcha-btn{
+				font-size: 0.7rem;
+				width:4.75rem;
+			}
+			.lable-number{
+				margin-bottom:0.75rem;
+			}
+			&.account{
+				.ui-border{
+					.span-left{
+						border:none;
 					}
 				}
 			}
 		}
-		.more-video{
-			min-height: 1.85rem;
+	}
+	.button{
+		padding:1.25rem 1.0rem;
+		button{
+			width:100%;
 		}
-		.audio{
-			margin-top:0.5rem;
-			margin-bottom: 0.5rem;
-			background-color:#ffefe5;
-			padding:0 0.57rem;
-			.audio-items{
-				
-				li{
-					padding:0.75rem 0;
-					background:url(/public/images/right.png) no-repeat right 50%;
-					background-size:0.45rem;
-					&:not(:last-child){
-						border-bottom:1px solid #c9bd9b;
-					}
-					.img{
-						width:3.0rem;
-						height: 3.3rem;
-						background:url(/public/images/img-bg.png) no-repeat 50% 50%;
-						background-size:auto 100%;
-						overflow: hidden;
-						margin-right:0.5rem;
-						img{
-							width:100%;
-							height:3.0rem;
-						}
-					}
-					.desc{
-						width:75%;
-						color:#881111;
-						padding-right:.6rem;
-						h6,.ji,p{
-							width:100%;
-							white-space: nowrap;
-      						overflow: hidden;
-      						text-overflow: ellipsis;
-						}
-						h6{
-							font-size:.8rem;
-							font-weight: normal;
-						}
-						div.ji{
-							padding-left:1.0rem;
-							background:url(/public/images/juji.png) no-repeat 0 50%;
-							background-size:0.75rem;
-						}
-					}
-				}
+	}
+}
+// 购买
+.purchase{
+	min-height: 100%;
+	background-color:#f3f3f3;
+	.header,.content,.pay-type{
+		background-color:#fff;
+	}
+	dl{
+		dt{
+			color:#666;
+		}
+		dd{
+			color:#333;
+		}
+	}
+	.header{
+		padding:1.95rem 0 1.25rem;
+		line-height: 1em;
+		text-align: center;
+		color:#333;
+		border-bottom:1px solid #ddd;
+		dt{
+			font-size: 1.0rem;
+			color:#333;
+			margin-bottom:1.0rem;
+		}
+		dd{
+			font-size: 0.65rem;
+			
+		}
+	}
+	.content{
+		padding:1.15rem 0;
+		margin-bottom:0.5rem;
+		dl{
+			&:not(:last-child){
+				margin-bottom: 1.12rem;
+			}
+			dt{
+				padding:0 1rem 0 1.1rem;
 			}
 		}
-		.movie{
-			.movie-items{
-				li{
-					background-color:#ffefe5;
-					padding:0.5rem;
-					&:not(:last-child){
-						margin-bottom: 0.5rem;
-					}
-					.img{
-						width:3.9rem;
-						height:5.5rem;
-						overflow: hidden;
-						margin-right:0.65rem;
-
-					}
-					.txt{
-						width:72%;
-						color:#881111;
-						h5{
-							width:100%;
-							font-size:0.85rem;
-							font-weight:normal;
-							margin-bottom: 0.05rem;
-							white-space: nowrap;
-      						overflow: hidden;
-      						text-overflow: ellipsis;
-						}
-						p{
-							line-height: 0.95rem;
-							&.actor{
-								overflow: hidden;
-								text-overflow:ellipsis;
-								display: -webkit-box;
-								-webkit-line-clamp: 2;
-								-webkit-box-orient: vertical;
-								width:100%;
-							}
-						}
-					}
-				}
+	}
+	.pay-type{
+		padding:1.05rem 1.2rem;
+		margin-bottom:1.25rem;
+		dl{
+			dd{
+				font-size: 0.8rem;
+				line-height: 1.05rem;
+				padding-left:1.6rem;
+				background:url(/public/images/icon-wx.png) no-repeat 0 50%;
+				background-size:1.25rem;
 			}
+		}
+	}
+	.button{
+		padding:0 1.0rem;
+		button{
+			width:100%;
+		}
+	}
+}
+.s-and-e{
+	min-height: 100%;
+	text-align: center;
+	.text{
+		dt{
+			font-size: 0.9rem;
+			line-height:1em;
+			padding:0.6rem 0 0.65rem;
+			font-weight:bold;
+		}
+	}
+	.img{
+		padding:2.5rem 5.2rem 0;
+		img{
+			width:8.38rem;
+			height: 8.35rem;
+		}
+	}
+	.bottom{
+		padding:2.0rem 1.0rem 1.25rem;
+		button{
+			width: 100%;
+		}
+	}
+}
+//成功
+.success{
+	
+	dt{
+		color:#333;
+	}
+	dd{
+		color:#666;
+	}
+}
+//失败
+.error{
+	
+	.error-header{
+		.img{
+			margin-bottom:0.7rem;
+		}
+		p{
+			line-height: 1.5em;
+		}
+	}
+}
+.pay-ing{
+	.img{
+		margin-bottom: 2.5rem;
+	}
+	.txt{
+		text-align: left;
+		padding:0 2.0rem;
+		line-height: 1.5em;
+	}
+	.bottom{
+		.btn2{
+			margin-top:1.0rem;
+			position: relative;
+			&:after{
+				content: "重新支付";
+				font-size: .9rem;
+				width:99.5%;
+				height: 97%;
+				position: absolute;
+				background-color: #fff;
+				left:50%;
+				top:50%;
+				transform: translate(-50%,-50%);
+				color:#2f82ff;
+				line-height: 1.95rem;
+			}
+		}
+	}
+}
+// 弹框
+.mode{
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	position: fixed;
+	background-color: rgba(0,0,0,.6);
+	z-index: 999;
+	.mode-wrap{
+		width:13.5rem;
+		min-height:6.4rem;
+		background-color:#fff;
+		border-radius:0.5rem;
+		text-align: center;
+		.mode-content{
+			
+			// border-bottom:1px solid #999;
+			.mode-txt{
+				padding:1.6rem 0.5rem;
+				font-size: 0.75rem;
+			}
+			position: relative;
+			&:after{
+				content: "";
+				display: block;
+				width:100%;
+				height:1px;
+				background-color: #666;
+				left:0;
+				bottom:0;
+				transform: scaleY(.5);
+			}
+		}
+		.mode-btn{
+			height: 2.3rem;
+			line-height: 2.3rem;
+			color:#2f82ff;
+			font-size: 0.9rem;
 		}
 	}
 }
